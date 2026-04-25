@@ -2,7 +2,7 @@ import { useState, useEffect, Navigate } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import axios from 'axios';
+import api from '../api';
 import toast from 'react-hot-toast';
 
 const Analytics = () => {
@@ -17,7 +17,7 @@ const Analytics = () => {
 
   const fetchSubjects = async () => {
     try {
-      const res = await axios.get(`/api/subjects/${user.class}`);
+      const res = await api.get(`/api/subjects/${user.class}`);
       setSubjects(res.data);
     } catch (err) {
       toast.error('Failed to fetch subjects');

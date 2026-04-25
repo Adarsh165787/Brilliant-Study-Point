@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import axios from 'axios';
+import api from '../api';
 import toast from 'react-hot-toast';
 import { CheckCircle, Play, FileText } from 'lucide-react';
 
@@ -20,7 +20,7 @@ const SubjectDetail = () => {
 
   const fetchSubject = async () => {
     try {
-      const res = await axios.get(`/api/subjects/detail/${id}`);
+      const res = await api.get(`/api/subjects/detail/${id}`);
       setSubject(res.data);
       const progress = user.progress?.get
         ? user.progress.get(res.data.name)
@@ -40,7 +40,7 @@ const SubjectDetail = () => {
     setCompletedChapters(newCompleted);
 
     try {
-      await axios.put('/api/users/progress', {
+      await api.put('/api/users/progress', {
         subject: subject.name,
         completedChapters: newCompleted,
       });
