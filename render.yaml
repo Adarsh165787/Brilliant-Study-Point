@@ -9,7 +9,9 @@ services:
 
   - type: static_site
     name: brilliant-classes-frontend
+    env: node
     plan: free
-    buildCommand: cd frontend && npm install --include=dev && npm run build
-    publishPath: frontend/dist
+    root: frontend
+    buildCommand: npm install --include=dev && npm run build
+    publishPath: dist
     branch: main
