@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: brilliant-classes-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm run start
+    branch: main
+
+  - type: static_site
+    name: brilliant-classes-frontend
+    plan: free
+    buildCommand: cd frontend && npm install --include=dev && npm run build
+    publishPath: frontend/dist
+    branch: main
